@@ -17,11 +17,11 @@ Category.init(
     },
     bannerImage:{
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     cardImage:{
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
