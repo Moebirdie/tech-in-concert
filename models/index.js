@@ -3,6 +3,9 @@ const Blog = require('./Blog');
 const Category = require('./Category');
 const Tag = require('./Tag');
 const BlogTag = require('./BlogTag');
+const User = require('./User')
+
+
 
 // Products belongsTo Category
 Blog.belongsTo(Category, {
@@ -25,6 +28,9 @@ Tag.belongsToMany(Blog, {
   through: 'blog_tag',
 });
 
+User.belongsToMany(Blog, {
+  through: 'user_id',
+});
 
 
 module.exports = {
@@ -32,4 +38,5 @@ module.exports = {
   Category,
   Tag,
   BlogTag,
+  User,
 };
