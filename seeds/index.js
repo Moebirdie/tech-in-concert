@@ -1,5 +1,7 @@
 const seedCategories = require('./category-seed');
 const seedBlogs = require('./blog-seed');
+const seedComments = require('./comments-seed');
+
 const seedUsers = require('./user-seed');
 //const seedTags = require('./');
 
@@ -19,6 +21,10 @@ const seedAll = async () => {
 
  // await seedTags();
  // console.log('\n----- PRODUCT TAGS SEEDED -----\n');
+
+ await seedComments();
+ console.log('\n----- COMMENTS SEEDED -----\n');
+
 
   process.exit(0);
 };

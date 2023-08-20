@@ -3,7 +3,8 @@ const Blog = require('./Blog');
 const Category = require('./Category');
 const Tag = require('./Tag');
 const BlogTag = require('./BlogTag');
-const User = require('./User')
+const User = require('./User');
+const Comments = require('./Comments');
 
 
 
@@ -32,6 +33,9 @@ User.belongsToMany(Blog, {
   through: 'user_id',
 });
 
+Comments.belongsTo(Blog,{
+  foreignKey: 'blog_id',
+})
 
 module.exports = {
   Blog,
@@ -39,4 +43,5 @@ module.exports = {
   Tag,
   BlogTag,
   User,
+  Comments,
 };
