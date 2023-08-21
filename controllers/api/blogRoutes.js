@@ -1,16 +1,15 @@
 // CRUD operations on blog posts
 const router = require('express').Router();
-const Blog  = require('../../models/Blog');
-const Comment = require('../../models/Comment');
+const {Blog, Comment}  = require('../../models');
 
 
 //get all blogs
 router.get('/blog', async (req, res) => {
   try {
-    const blogs = await Blog.findAll({
+    const blogData = await Blog.findAll({
         include: [{ model: Comment }],
       });
-    res.status(200).json(blogs);  
+    res.status(200).json(blogData);  
   }
   catch (err) {
     res.status(500).json(err)
@@ -25,9 +24,8 @@ router.post('/blog', async (req, res) => {
        title: req.body.title,
        summaryText: req.body.summaryText,
        bodyText: req.body.bodyText,
-       bannerImage: req.body.bannerImage,
-       cardImage: req.body.cardImage,
-       category_id: req.body.category_id,
+       user_id: req.body.user_id,
+       comment_id: req.body.comment_id,
       // user_id: req.session.user_id
   });
     res.status(200).json(newBlog);
@@ -43,9 +41,8 @@ router.get('/blog/:id', async (req, res) => {
        title: req.body.title,
        summaryText: req.body.summaryText,
        bodyText: req.body.bodyText,
-       bannerImage: req.body.bannerImage,
-       cardImage: req.body.cardImage,
-       category_id: req.body.category_id,
+       user_id: req.body.user_id,
+       comment_id: req.body.comment_id,
       // user_id: req.session.user_id
   });
     res.status(200).json(newBlog);
@@ -62,9 +59,7 @@ router.put('/blog/:id', (req, res) => {
        title: req.body.title,
        summaryText: req.body.summaryText,
        bodyText: req.body.bodyText,
-       bannerImage: req.body.bannerImage,
-       cardImage: req.body.cardImage,
-       category_id: req.body.category_id,
+       user_id: req.body.user_id,
        comment_id: req.body.comment_id,
       // user_id: req.session.user_id
       },

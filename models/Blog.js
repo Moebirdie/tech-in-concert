@@ -23,22 +23,6 @@ Blog.init(
       type: DataTypes.TEXT('long'),
       allowNull: false,
     },
-    bannerImage:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    cardImage:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    category_id:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'category',
-        key: 'id',
-      },
-    },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -53,14 +37,6 @@ Blog.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
-        key: 'id',
-      },
-    },
-    comment_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'comment',
         key: 'id',
       },
     },
