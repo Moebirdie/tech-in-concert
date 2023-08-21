@@ -1,18 +1,15 @@
 // CRUD operations on blog posts
 const router = require('express').Router();
 const Blog  = require('../../models/Blog');
-const Category = require('../../models/Category');
-const Comments = require('../../models/Comments');
+const Comment = require('../../models/Comment');
 
 
 //get all blogs
 router.get('/blog', async (req, res) => {
   try {
-    const blogs = await Blog.findAll(
-      {
-        include: [{model: Comments}],
-      },
-    );
+    const blogs = await Blog.findAll({
+        include: [{ model: Comment }],
+      });
     res.status(200).json(blogs);  
   }
   catch (err) {
@@ -68,6 +65,7 @@ router.put('/blog/:id', (req, res) => {
        bannerImage: req.body.bannerImage,
        cardImage: req.body.cardImage,
        category_id: req.body.category_id,
+       comment_id: req.body.comment_id,
       // user_id: req.session.user_id
       },
       {

@@ -8,6 +8,7 @@ const blogData = [
     category_id: 1,
     bannerImage: 'https//',
     cardImage: 'https//',
+    comment_id: 1,
   },
   {
     title: 'One Some Title Here',
@@ -16,6 +17,7 @@ const blogData = [
     category_id: 1,
     bannerImage: 'https//',
     cardImage: 'https//',
+    comment_id: 2,
   },
   {
     title: 'Two Some Title Here',
@@ -24,6 +26,7 @@ const blogData = [
     category_id: 2,
     bannerImage: 'https//',
     cardImage: 'https//',
+    comment_id: 3,
   },
   {
     title: 'Three Some Title Here',
