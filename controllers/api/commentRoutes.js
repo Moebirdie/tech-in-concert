@@ -1,13 +1,13 @@
 // CRUD operations on blog posts
 const routerComment = require('express').Router();
-const {Blog, Comment}  = require('../../models');
+const {Blog, Comment, User}  = require('../../models');
 
 
 //get all comments
 routerComment.get('/comment', async (req, res) => {
   try {
     const commentData = await Comment.findAll({
-        include: [{ model: Blog }],
+        include: [{ model: Blog }, {model: User}],
       });
     res.status(200).json(commentData);  
   }
