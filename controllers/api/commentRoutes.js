@@ -22,9 +22,9 @@ routerComment.post('/comment', async (req, res) => {
   try {
     const newComment = await Comment.create({
        comment_text: req.body.comment_text,
-       user_id: req.body.user_id,
+       //user_id: req.body.user_id,
        blog_id: req.body.blog_id,
-      // user_id: req.session.user_id
+       user_id: req.session.user_id
   });
     res.status(200).json(newComment);
   } catch (err) {
@@ -37,9 +37,9 @@ routerComment.get('/comment/:id', async (req, res) => {
   try {
     const oneCommentData = await Comment.findByPk(req.params.id,{
       comment_text: req.body.comment_text,
-      user_id: req.body.user_id,
+      //user_id: req.body.user_id,
       blog_id: req.body.blog_id,
-      // user_id: req.session.user_id
+      user_id: req.session.user_id
   });
     res.status(200).json(oneCommentData);
   } catch (err) {
@@ -53,9 +53,9 @@ routerComment.put('/comment/:id', (req, res) => {
     Comment.update(
       {
         comment_text: req.body.comment_text,
-        user_id: req.body.user_id,
+        //user_id: req.body.user_id,
         blog_id: req.body.blog_id,
-      // user_id: req.session.user_id
+        user_id: req.session.user_id
       },
       {
         where: {
