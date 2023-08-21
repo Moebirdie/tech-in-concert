@@ -49,10 +49,10 @@
 
 const express = require('express');
 const router = require('./controllers/api/blogRoutes');
-const routerCategories = require('./controllers/api/categoryRoutes');
+const routerUsers = require('./controllers/api/userRoutes');
 const sequelize = require('./config/connection');
 const blogRoutes = require('./controllers/api/blogRoutes.js');
-const categoryRoutes = require('./controllers/api/categoryRoutes')
+const userRoutes = require('./controllers/api/userRoutes')
 // const categoryRoutes = require('./controllers/api/categoryRoutes');
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -60,7 +60,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/controllers', blogRoutes);
-app.use('/controllers', categoryRoutes);
+app.use('/controllers', userRoutes);
 //app.use('/controllers/api');
 // turn on routes
 app.use(router);

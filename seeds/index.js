@@ -10,8 +10,12 @@ const sequelize = require('../config/connection');
 const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
+
   await seedCategories();
   console.log('\n----- CATEGORIES SEEDED -----\n');
+
+  await seedComments();
+  console.log('\n----- COMMENTS SEEDED -----\n');
 
   await seedBlogs();
   console.log('\n----- PRODUCTS SEEDED -----\n');
@@ -22,8 +26,7 @@ const seedAll = async () => {
  // await seedTags();
  // console.log('\n----- PRODUCT TAGS SEEDED -----\n');
 
- await seedComments();
- console.log('\n----- COMMENTS SEEDED -----\n');
+
 
 
   process.exit(0);
