@@ -24,9 +24,9 @@ router.post('/blog', async (req, res) => {
        title: req.body.title,
        summaryText: req.body.summaryText,
        bodyText: req.body.bodyText,
-       user_id: req.body.user_id,
+      // user_id: req.body.user_id,
        comment_id: req.body.comment_id,
-      // user_id: req.session.user_id
+       user_id: req.session.user_id
   });
     res.status(200).json(newBlog);
   } catch (err) {
@@ -41,9 +41,9 @@ router.get('/blog/:id', async (req, res) => {
        title: req.body.title,
        summaryText: req.body.summaryText,
        bodyText: req.body.bodyText,
-       user_id: req.body.user_id,
+       //user_id: req.body.user_id,
        comment_id: req.body.comment_id,
-      // user_id: req.session.user_id
+       user_id: req.session.user_id
   });
     res.status(200).json(newBlog);
   } catch (err) {
@@ -59,9 +59,9 @@ router.put('/blog/:id', (req, res) => {
        title: req.body.title,
        summaryText: req.body.summaryText,
        bodyText: req.body.bodyText,
-       user_id: req.body.user_id,
+      // user_id: req.body.user_id,
        comment_id: req.body.comment_id,
-      // user_id: req.session.user_id
+       user_id: req.session.user_id
       },
       {
         where: {
