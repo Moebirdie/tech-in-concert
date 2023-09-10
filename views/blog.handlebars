@@ -1,0 +1,40 @@
+<container style="display:flex; flex-direction:column">
+<section class="fullBlogcard">
+    <header>
+      <h2>{{blog.title}}</h2>
+      <h4>{{blog.user_id}}</h4> <h4>{{blog.blog_id}}</h4>
+      <p>{{blog.date_created}}</p>
+      <hr>
+      </header>
+
+    <div class="card-body">
+      <p>{{blog.bodyText}}</p>
+    </div>
+</section>
+
+<section class="">
+    {{#each blog.comments as |comment|}}
+    {{> comments-details}}
+    {{/each}}
+</section>
+
+<section>
+<!-- This is the form for adding a new comment -->
+  <div class="add-comment-container">
+    <form class="new-comment-form">
+      <label for="comment">
+        Comment:
+      </label>
+      <br />
+      <textarea id="commentText" name="comment_name" rows="2" cols="30">
+      </textarea>
+      <br />
+      <br />
+      <button type="submit" value="Submit">
+        Submit
+      </button>
+    </form>
+    <script src="/js/add-comment.js"></script>
+</div>
+</section>
+</container>
