@@ -14,6 +14,9 @@ router.get('/', async (req, res) => {
             attributes: ['user_id', 'comment_text', 'blog_id' ],
           },  
         ],
+        where: {
+          user_id: 1,
+        }
       });
     
       const blogs = blogData.map((blog) =>
@@ -104,26 +107,26 @@ router.get('/login', (req, res) => {
 // });
 
 // Get one blog by ID
-router.get('/blog/:id', async (req, res) => {
-  try {
-    const newBlog = await Blog.findByPk(req.params.id,{
-      include: [
-                { 
-                  model: Comment,
-                  attributes: ['user_id', 'comment_text', 'blog_id' ],
-                },  
-              ],
-            }); 
+// router.get('/blog/:id', async (req, res) => {
+//   try {
+//     const newBlog = await Blog.findByPk(req.params.id,{
+//       include: [
+//                 { 
+//                   model: Comment,
+//                   attributes: ['user_id', 'comment_text', 'blog_id' ],
+//                 },  
+//               ],
+//             }); 
 
-  const blog = newBlog.get({ plain: true });
+//   const blog = newBlog.get({ plain: true });
 
-  // res.render('blog', { blog, loggedIn: req.session.loggedIn });
-  res.render('blog', { blog });
-} catch (err) {
-  console.log(err);
-  res.status(500).json(err);
-}
-});
+//   // res.render('blog', { blog, loggedIn: req.session.loggedIn });
+//   res.render('blog', { blog });
+// } catch (err) {
+//   console.log(err);
+//   res.status(500).json(err);
+// }
+// });
 
 // // update one blog by ID - can be done the same with asyn/await.  This is another method that does the same thing.
 // router.put('/blog/:id', (req, res) => {
