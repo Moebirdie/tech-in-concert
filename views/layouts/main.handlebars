@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog</title>
+  <link rel="stylesheet" type="text/css" href="/css/jass.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Tech in Concerto</h1>
+    <p style="font-style:italic">"Where tech ideas and concepts come together."</p>
+  </header>
+  <nav style="display:flex; justify-content:space-between;">
+
+    <div>
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+    </div>
+    <div>
+      {{#if loggedIn}}
+      <button id="logout" class="btn-no-style">Logout</button>
+      {{else}}
+      <a href="/login">Login</a>
+      {{/if}}
+    </div>
+  </nav>
+  <main>
+      <div class="gallery">
+      {{{body}}}
+    </div>
+  </main>
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
