@@ -17,7 +17,7 @@ Blog.init(
     },
     summaryText: {
       type: DataTypes.TEXT('medium'),
-      allowNull: false,
+      allowNull: true,
     },
     bodyText: {
       type: DataTypes.TEXT('long'),
@@ -25,7 +25,7 @@ Blog.init(
     },
     date_created: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       defaultValue: DataTypes.NOW,
     },
     date_modified: {

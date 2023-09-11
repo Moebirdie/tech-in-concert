@@ -83,26 +83,6 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-
-
-
-// // Create a new blog
-// router.post('/blog', async (req, res) => {
-//   try {
-//     const newBlog = await Blog.create({
-//        title: req.body.title,
-//        summaryText: req.body.summaryText,
-//        bodyText: req.body.bodyText,
-//       // user_id: req.body.user_id,
-//        comment_id: req.body.comment_id,
-//        user_id: req.session.user_id
-//   });
-//     res.status(200).json(newBlog);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
-
 // Get one blog by ID
 router.get('/blog/:id', async (req, res) => {
   try {

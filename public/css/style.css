@@ -166,3 +166,10 @@ img {
   align-content: flex-start;
   align-items: center;
 }
+
+.addClass {
+  display: none!important;
+}
+.removeClass {
+  display:flex;
+}

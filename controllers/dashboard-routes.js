@@ -15,14 +15,14 @@ router.get('/', async (req, res) => {
           },  
         ],
         where: {
-          user_id: 1,
+          user_id: 2,
         }
       });
     
       const blogs = blogData.map((blog) =>
       blog.get({plain: true})
       );
-    res.render('homepage', {
+    res.render('dashboard', {
       blogs,
 //      loggedIn:req.session.loggedIn,
     });
@@ -85,6 +85,23 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+// Create a new blog
+// router.post('/blog', async (req, res) => {
+//   try {
+//     const newBlog = await Blog.create({
+//        title: req.body.title,
+//       // summaryText: req.body.summaryText,
+//        bodyText: req.body.bodyText,
+//        user_id: req.body.user_id,
+//       // comment_id: req.body.comment_id,
+//       // user_id: req.session.user_id
+//   });
+//     res.status(200).json(newBlog);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 
 
