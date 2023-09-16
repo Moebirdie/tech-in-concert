@@ -1,38 +1,31 @@
-{{!-- 
-<container style="display:flex; flex-direction:column">
-<section class="" style="display:flex; flex-direction:row">
-{{#each blogs as |blog|}}
-{{> blogdetails}}
-{{/each}}
-</section>
-
-<section>
-<!-- This is the form for adding a new comment -->
-  <div class="add-comment-container">
-             <a href="/newblog"><button type="submit" value="Submit">
-        Add Post
-      </button></a>
-    <script src="/js/add-blog.js"></script>
-</div>
-</section>
-</container> --}}
-
 
 <container style="display:flex; flex-direction:column">
-<section id="userBlogs" class="removeClass" style="display:flex; flex-direction:row">
-{{#each blogs as |blog|}}
-{{> editableblogdetails}}
-{{/each}}
-</section>
-<section id="newUserBlogs" class="addClass" style="display:flex; flex-direction:row">
-{{> newblog}}
-</section>
-
-<section>
-<!-- This is the form for adding a new comment -->
+  <!-- This is the form for adding a new comment -->
+ <section>
   <div id="postButton" class="removeClass">
             <button onclick="toggleClasses">Add Post </button></a>
+</div>
+</section>
+<section id="userBlogs" class="removeClass" style="display:flex; flex-direction:row">
+{{#each blogs as |blog|}}
+{{> dashboard-details}}
+{{/each}}
+</section>
+<section id="newUserBlogs" class="removeClass" style="display:flex; flex-direction:row">
+{{> newblog}}
+</section>
+<section id="newUserBlogs" class="removeClass" style="display:flex; flex-direction:row">
+{{> editableblogdetails}}
+</section>
+{{!-- <section id="newUserBlogs" class="addClass" style="display:flex; flex-direction:row">
+{{> editblog}}
+</section> --}}
+
+<section>
+
+
     <script src="/js/add-blog.js"></script>
+    <script src="/js/editblog.js"></script>
 </div>
 </section>
 </container>
