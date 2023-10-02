@@ -1,6 +1,8 @@
+<container>
 <section class="card">
+  <form>
     <header>
-      <h3>{{user_id}}</h3>
+      <h3>This is the edit blog page{{user_id}}</h3>
       <p style="font-size:10px">{{date_created}}</p>
       <br>
       <h2>{{title}}</h2>
@@ -10,15 +12,16 @@
     <div class="card-body">
       <p>{{summary_text}}</p>
     </div>
+  </a>
+ </form>
 </section>
-<section style="display:flex; flex-direction:row; justify-content:space-around">
 <!-- This is the form for adding a new comment -->
   <div id="editButton" class="">
-            <button onclick="editPostButton">Edit Post </button></a>
+            <button onclick="getFormData">Edit Post </button></a>
             <!-- This is the form for adding a new comment -->
   <div id="deleteButton" class="">
             <button onclick="deleteBlogButton">Delete Post </button></a>
     <script src="/js/add-blog.js"></script>
     <script src="/js/editblog.js"></script>
 </div>
-</section>
+</container>

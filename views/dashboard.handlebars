@@ -1,16 +1,31 @@
-<section class="card">
-  <a href="/blog/{{id}}">
-    <header>
-      <h3>{{user_id}}</h3>
-      <p style="font-size:10px">{{date_created}}</p>
-      <br>
-      <h2>{{title}}</h2>
-      <hr>
-      </header>
 
-    <div class="card-body">
-      <p>{{short_text}}</p>
-      <a href="/blog/{{id}}">read more</a>
-    </div>
-  </a>
+<container style="display:flex; flex-direction:column">
+  <!-- This is the form for adding a new comment -->
+ <section>
+  <div id="postButton" class="removeClass">
+            <button onclick="toggleClasses">Add Post </button></a>
+</div>
 </section>
+<section id="userBlogs" class="removeClass" style="display:flex; flex-direction:row">
+{{#each blogs as |blog|}}
+{{> dashboard-details}}
+{{/each}}
+</section>
+<section id="newUserBlogs" class="removeClass" style="display:flex; flex-direction:row">
+{{> newblog}}
+</section>
+<section id="newUserBlogs" class="removeClass" style="display:flex; flex-direction:row">
+{{> editableblogdetails}}
+</section>
+{{!-- <section id="newUserBlogs" class="addClass" style="display:flex; flex-direction:row">
+{{> editblog}}
+</section> --}}
+
+<section>
+
+
+    <script src="/js/add-blog.js"></script>
+    <script src="/js/editblog.js"></script>
+</div>
+</section>
+</container>

@@ -5,11 +5,15 @@ const withAuth = require('../utils/auth');
 
 
 //get all blogs
-router.get('/', async (req, res) => {
+router.get('/',  async (req, res) => {
   try {
     const blogData = await Blog.findAll({
         include: [
           { 
+            model: User,
+            attributes:['id','username']
+          },
+          {
             model: Comment,
             attributes: ['user_id', 'comment_text', 'blog_id' ],
           },  
@@ -21,64 +25,18 @@ router.get('/', async (req, res) => {
       );
     res.render('homepage', {
       blogs,
-//      loggedIn:req.session.loggedIn,
+      //loggedIn:req.session.loggedIn,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err)
-    
   }
 });
 
-
-// GET one gallery
-// Use the custom middleware before allowing the user to access the gallery
-// router.get('/blog/:id', withAuth, async (req, res) => {
-//   try {
-//     const blogData = await Blog.findByPk(req.params.id, {
-//       include: [
-//         { 
-//           model: Comment,
-//           attributes: ['user_id', 'comment_text', 'blog_id' ],
-//         },  
-//       ],
-//     });
-
-//     const blog = blogData.get({ plain: true });
-//     res.render('blog', { blog, loggedIn: req.session.loggedIn });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
-
-// // GET one painting
-// // Use the custom middleware before allowing the user to access the painting
-// router.get('/blog/:id', withAuth, async (req, res) => {
-//   try {
-//     const blogData = await Blog.findByPk(req.params.id, {
-//       include: [
-//         { 
-//           model: Comment,
-//           attributes: ['user_id', 'comment_text', 'blog_id' ],
-//         },  
-//       ],
-//     });
-
-//     const blog = blogData.get({ plain: true });
-
-//     res.render('blog', { blog, loggedIn: req.session.loggedIn });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
-
 router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
+  // if (req.session.loggedIn) {
+  //   res.redirect('/');
+  //   return;
+  // }
 
   res.render('login');
 });
@@ -91,14 +49,43 @@ router.get('/blog/:id', async (req, res) => {
                 { 
                   model: Comment,
                   attributes: ['user_id', 'comment_text', 'blog_id' ],
-                },  
-              ],
+                },
+                { 
+                  model: User,
+                  attributes:['id','username']
+                },
+               ],
             }); 
 
   const blog = newBlog.get({ plain: true });
 
   // res.render('blog', { blog, loggedIn: req.session.loggedIn });
   res.render('blog', { blog });
+} catch (err) {
+  console.log(err);
+  res.status(500).json(err);
+}
+});
+
+router.get('/editblog/:id', async (req, res) => {
+  try {
+    const newBlog = await Blog.findByPk(req.params.id,{
+      include: [
+                { 
+                  model: Comment,
+                  attributes: ['user_id', 'comment_text', 'blog_id' ],
+                }, 
+                { 
+                  model: User,
+                  attributes:['id','username']
+                }, 
+              ],
+            }); 
+
+  const blog = newBlog.get({ plain: true });
+
+  // res.render('blog', { blog, loggedIn: req.session.loggedIn });
+  res.render('editdeleteblog', { blog });
 } catch (err) {
   console.log(err);
   res.status(500).json(err);
@@ -145,6 +132,8 @@ router.get('/blog/:id', async (req, res) => {
 //     res.status(500).json(err)
 //   })
 // });
+
+
 
 
 module.exports = router;

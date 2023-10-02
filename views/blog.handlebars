@@ -2,7 +2,7 @@
 <section class="fullBlogcard">
     <header>
       <h2>{{blog.title}}</h2>
-      <h4>{{blog.user_id}}</h4> <h4>{{blog.blog_id}}</h4>
+      <h4>{{user.username}}</h4> <h4>{{blog.blog_id}}</h4>
       <p>{{blog.date_created}}</p>
       <hr>
       </header>
@@ -28,6 +28,7 @@
       <br />
       <textarea id="commentText" name="comment_name" rows="2" cols="30">
       </textarea>
+      <input id="userId" value={{blog.user_id}} type="hidden" />
       <br />
       <br />
       <button type="submit" value="Submit">

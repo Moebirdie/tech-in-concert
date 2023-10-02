@@ -14,12 +14,16 @@ router.get('/', async (req, res) => {
             attributes: ['user_id', 'comment_text', 'blog_id' ],
           },  
         ],
+        where: {
+          // id: req.params.id,
+          user_id: req.session.user_id,
+        }
       });
     
       const blogs = blogData.map((blog) =>
       blog.get({plain: true})
       );
-    res.render('homepage', {
+    res.render('dashboard', {
       blogs,
 //      loggedIn:req.session.loggedIn,
     });
@@ -30,6 +34,26 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/editblog/:id', async (req, res) => {
+  try {
+    const newBlog = await Blog.findByPk(req.params.id,{
+      include: [
+                { 
+                  model: Comment,
+                  attributes: ['user_id', 'comment_text', 'blog_id' ],
+                },  
+              ],
+            }); 
+
+  const blog = newBlog.get({ plain: true });
+
+  // res.render('blog', { blog, loggedIn: req.session.loggedIn });
+  res.render('editdeleteblogdetails', { blog });
+} catch (err) {
+  console.log(err);
+  res.status(500).json(err);
+}
+});
 
 // GET one gallery
 // Use the custom middleware before allowing the user to access the gallery
@@ -83,27 +107,64 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// Create a new blog
+// router.post('/blog', async (req, res) => {
+//   try {
+//     const newBlog = await Blog.create({
+//        title: req.body.title,
+//       // summaryText: req.body.summaryText,
+//        bodyText: req.body.bodyText,
+//        user_id: req.body.user_id,
+//       // comment_id: req.body.comment_id,
+//       // user_id: req.session.user_id
+//   });
+//     res.status(200).json(newBlog);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
+
+
+
+
+// // Create a new blog
+// router.post('/blog', async (req, res) => {
+//   try {
+//     const newBlog = await Blog.create({
+//        title: req.body.title,
+//        summaryText: req.body.summaryText,
+//        bodyText: req.body.bodyText,
+//       // user_id: req.body.user_id,
+//        comment_id: req.body.comment_id,
+//        user_id: req.session.user_id
+//   });
+//     res.status(200).json(newBlog);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
+
 // Get one blog by ID
-router.get('/blog/:id', async (req, res) => {
-  try {
-    const newBlog = await Blog.findByPk(req.params.id,{
-      include: [
-                { 
-                  model: Comment,
-                  attributes: ['user_id', 'comment_text', 'blog_id' ],
-                },  
-              ],
-            }); 
+// router.get('/blog/:id', async (req, res) => {
+//   try {
+//     const newBlog = await Blog.findByPk(req.params.id,{
+//       include: [
+//                 { 
+//                   model: Comment,
+//                   attributes: ['user_id', 'comment_text', 'blog_id' ],
+//                 },  
+//               ],
+//             }); 
 
-  const blog = newBlog.get({ plain: true });
+//   const blog = newBlog.get({ plain: true });
 
-  // res.render('blog', { blog, loggedIn: req.session.loggedIn });
-  res.render('blog', { blog });
-} catch (err) {
-  console.log(err);
-  res.status(500).json(err);
-}
-});
+//   // res.render('blog', { blog, loggedIn: req.session.loggedIn });
+//   res.render('blog', { blog });
+// } catch (err) {
+//   console.log(err);
+//   res.status(500).json(err);
+// }
+// });
 
 // // update one blog by ID - can be done the same with asyn/await.  This is another method that does the same thing.
 // router.put('/blog/:id', (req, res) => {
